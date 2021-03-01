@@ -1,0 +1,43 @@
+﻿<mah:MetroWindow x:Class="Test.Pages.ShellView"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d"
+                 Title="{Binding Title}" Height="450" Width="800"
+                 xmlns:s="https://github.com/canton7/Stylet"
+                 xmlns:nlogViewer="clr-namespace:NLogViewer;assembly=NLogViewer"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                 xmlns:pages="clr-namespace:Test.Pages"
+                 ResizeMode="CanResizeWithGrip"
+                 WindowState="Maximized"
+                 GlowBrush="Green"
+                 Background="{DynamicResource MaterialDesignPaper}"
+                 FontFamily="{DynamicResource MaterialDesignFont}"
+                 FontSize="15"
+                 d:DataContext="{d:DesignInstance pages:ShellViewModel}"
+                 mah:DialogParticipation.Register="{Binding}">
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands ShowLastSeparator="True">
+            <Button ToolTip="打开日志文件" Command="{s:Action OpenLogFile}">
+                <materialDesign:PackIcon Width="22" Height="22" Kind="FileDocument" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TabControl Margin="3" Grid.Row="0" Style="{StaticResource StyletConductorTabControl}" BorderThickness="0" mah:TabControlHelper.Underlined="TabItems" />
+        <nlogViewer:NLogViewer
+            Grid.Row="1"
+            LoggerName="ctrl"
+            Margin="3"
+            DateTimeColumnText="时间"
+            LevelColumnText="级别"
+            MessageColumnText="消息"
+            ExceptionColumnText="异常" />
+    </Grid>
+</mah:MetroWindow>

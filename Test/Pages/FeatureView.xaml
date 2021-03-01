@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Test.Pages.FeatureView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:s="https://github.com/canton7/Stylet"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:pages="clr-namespace:Test.Pages"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance pages:FeatureViewModel}"
+             >
+    <StackPanel>
+        <DockPanel>
+            <Button Margin="3" Width="50" DockPanel.Dock="Right" Content="{materialDesign:PackIcon FileDocument}"
+                Command="{s:Action BrowseFile}" />
+            <TextBox Margin="10" materialDesign:HintAssist.Hint="文件"
+                 materialDesign:HintAssist.IsFloating="True"
+                 Text="{Binding InputFile, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalContentAlignment="Center" />
+        </DockPanel>
+        <DockPanel>
+            <Button Margin="3" Width="50" DockPanel.Dock="Right" Content="{materialDesign:PackIcon FolderOpen}"
+                Command="{s:Action BrowseFolder}" />
+            <TextBox Margin="10" materialDesign:HintAssist.Hint="文件夹"
+                 materialDesign:HintAssist.IsFloating="True"
+                 Text="{Binding InputFolder, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalContentAlignment="Center" />
+        </DockPanel>
+        <Button Margin="10" Content="运行" Command="{s:Action Run}" materialDesign:ButtonProgressAssist.Value="{Binding Progress}"></Button>
+    </StackPanel>
+</UserControl>
